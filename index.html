@@ -289,7 +289,7 @@ footer{text-align:center;padding:40px 24px;color:var(--text3);font-size:.82rem;b
 </div>
 <div class="card">
 <h3>Доставка vs зал</h3>
-<p style="color:var(--text2);font-size:.88rem">78% сетей имеют доставку, 59% независимых. Рынок доставки: ~664 млрд ₽ (2024), +21-27% YoY. Трафик в залах: &minus;2% (2025). Главный конкурент — готовая еда из ритейла (~4,5 трлн ₽).</p>
+<p style="color:var(--text2);font-size:.88rem">78% сетей имеют доставку, 59% независимых. Рынок доставки еды в России: ~664 млрд ₽ (2024), +21-27% YoY. Трафик в залах: &minus;2% (2025). Главный конкурент — готовая еда из ритейла (~4,5 трлн ₽).</p>
 </div>
 <div class="card">
 <h3>Русская кухня</h3>
@@ -1230,6 +1230,113 @@ footer{text-align:center;padding:40px 24px;color:var(--text3);font-size:.82rem;b
 <p style="margin-top:8px;color:var(--text3)">Источники: Checko.ru, Audit-it.ru, 2GIS, Яндекс Карты, Zoon.ru, Restorating.ru, HH.ru, TAdviser, РБК, Коммерсант, Forbes, Росстат, CheckIndex</p>
 </div>
 </footer>
+
+<!-- Inline editor -->
+<style>
+#edit-fab{position:fixed;bottom:28px;right:28px;z-index:9999;width:56px;height:56px;border-radius:50%;background:var(--gold,#C9A44C);color:#fff;border:none;cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.25);transition:all .2s}
+#edit-fab:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(0,0,0,0.35)}
+#edit-fab.active{background:#D44040}
+#edit-toolbar{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);z-index:9999;display:none;gap:10px;padding:12px 20px;background:rgba(12,10,8,0.95);border:1px solid rgba(201,164,76,0.4);border-radius:12px;align-items:center;backdrop-filter:blur(12px);box-shadow:0 8px 32px rgba(0,0,0,0.3)}
+#edit-toolbar.show{display:flex}
+#edit-toolbar button{padding:8px 18px;border-radius:8px;border:none;font-size:0.88em;cursor:pointer;transition:all .2s;font-family:inherit;font-weight:600}
+#edit-toolbar .tb-save{background:#C9A44C;color:#1A2B4A}
+#edit-toolbar .tb-save:hover{filter:brightness(1.15)}
+#edit-toolbar .tb-reset{background:transparent;color:#A8A098;border:1px solid #5A6880}
+#edit-toolbar .tb-reset:hover{background:rgba(212,64,64,0.15);color:#D44040;border-color:#D44040}
+#edit-toolbar .tb-status{font-size:0.82em;color:#A8A098;margin-left:8px}
+.section.editing [contenteditable="true"]{outline:1px dashed rgba(201,164,76,0.35);outline-offset:2px;border-radius:3px;min-height:1em}
+.section.editing [contenteditable="true"]:focus{outline:2px solid #C9A44C;background:rgba(201,164,76,0.06)}
+.section.editing td[contenteditable="true"]{outline:none;outline-offset:0;border-radius:0}
+.section.editing td[contenteditable="true"]:focus{outline:none;background:rgba(201,164,76,0.08);box-shadow:inset 0 0 0 1px #C9A44C}
+.section.editing table{position:relative;z-index:1}
+.section.editing th{position:static!important}
+.block-del{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:rgba(212,64,64,0.9);color:#fff;border:none;cursor:pointer;font-size:18px;display:none;align-items:center;justify-content:center;z-index:10;transition:all .15s;box-shadow:0 2px 8px rgba(212,64,64,0.4)}
+.block-del:hover{background:#e54;transform:scale(1.15)}
+.section.editing .block-del{display:flex}
+</style>
+<script>
+(function(){
+  var KEY='july-edits-v1',editing=false;
+  function ld(){try{return JSON.parse(localStorage.getItem(KEY))||{}}catch(e){return{}}}
+  function sv(d){localStorage.setItem(KEY,JSON.stringify(d))}
+  function allSecs(){return document.querySelectorAll('.section[id]')}
+
+  function cleanHTML(sec){
+    var c=sec.cloneNode(true);
+    c.querySelectorAll('.block-del').forEach(function(e){e.remove()});
+    c.querySelectorAll('[contenteditable]').forEach(function(e){e.removeAttribute('contenteditable')});
+    c.classList.remove('editing');return c.innerHTML;
+  }
+
+  function enterEdit(sec){
+    sec.classList.add('editing');
+    sec.querySelectorAll('h2,h3,h4,p,td,li,.section-desc,.val,.lbl,.metric').forEach(function(el){
+      if(el.closest('svg')||el.closest('.nav')||el.closest('#edit-toolbar'))return;
+      el.contentEditable='true';
+    });
+    sec.querySelectorAll('.card,.callout,.chart-container').forEach(function(block){
+      if(block.querySelector('.block-del'))return;
+      block.style.position='relative';
+      var x=document.createElement('button');x.className='block-del';x.title='Удалить блок';x.textContent='\u00d7';
+      x.addEventListener('click',function(){if(confirm('Удалить этот блок?'))block.remove()});
+      block.appendChild(x);
+    });
+  }
+
+  function exitEdit(sec){
+    sec.classList.remove('editing');
+    sec.querySelectorAll('[contenteditable]').forEach(function(e){e.removeAttribute('contenteditable')});
+    sec.querySelectorAll('.block-del').forEach(function(e){e.remove()});
+  }
+
+  // Restore saved content
+  var d=ld();
+  allSecs().forEach(function(sec){
+    if(d[sec.id]&&d[sec.id].html){sec.innerHTML=d[sec.id].html}
+  });
+
+  // FAB button
+  var fab=document.createElement('button');
+  fab.id='edit-fab';fab.title='Редактировать отчёт';fab.textContent='\u270e';
+  document.body.appendChild(fab);
+
+  // Toolbar
+  var tb=document.createElement('div');
+  tb.id='edit-toolbar';
+  tb.innerHTML='<button class="tb-save">\uD83D\uDCBE Сохранить</button><button class="tb-reset">\u21ba Сбросить к оригиналу</button><span class="tb-status"></span>';
+  document.body.appendChild(tb);
+  var tbStatus=tb.querySelector('.tb-status');
+
+  fab.addEventListener('click',function(){
+    editing=!editing;
+    fab.classList.toggle('active',editing);
+    fab.textContent=editing?'\u2716':'\u270e';
+    fab.title=editing?'Выйти из редактирования':'Редактировать отчёт';
+    tb.classList.toggle('show',editing);
+    allSecs().forEach(function(sec){
+      if(editing){enterEdit(sec);tbStatus.textContent='Режим редактирования — кликайте на текст'}
+      else{exitEdit(sec);tbStatus.textContent=''}
+    });
+  });
+
+  tb.querySelector('.tb-save').addEventListener('click',function(){
+    var d=ld();
+    allSecs().forEach(function(sec){
+      exitEdit(sec);
+      d[sec.id]={html:cleanHTML(sec),ts:Date.now()};
+      if(editing)enterEdit(sec);
+    });
+    sv(d);
+    tbStatus.textContent='\u2713 Сохранено!';
+    setTimeout(function(){if(editing)tbStatus.textContent='Режим редактирования'},2000);
+  });
+
+  tb.querySelector('.tb-reset').addEventListener('click',function(){
+    if(!confirm('Сбросить ВСЕ изменения к оригиналу?'))return;
+    localStorage.removeItem(KEY);location.reload();
+  });
+})();
+</script>
 
 </body>
 </html>
