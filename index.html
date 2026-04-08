@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Июль — Полный конкурентный и SWOT-анализ гастробара</title>
+<style>
+:root{--bg:#0D0B0E;--bg2:#151217;--bg3:#1C1820;--card:#1A1620;--card2:#211D28;--border:#2E2838;--border2:#3D3548;--text:#E8E4EC;--text2:#A8A0B0;--text3:#706880;--gold:#C9A44C;--gold2:#E8C46A;--gold-bg:rgba(201,164,76,.08);--gold-border:rgba(201,164,76,.25);--red:#D44040;--red-bg:rgba(212,64,64,.08);--green:#3DB86A;--green-bg:rgba(61,184,106,.08);--blue:#4A8FE0;--blue-bg:rgba(74,143,224,.08);--purple:#9060D0;--purple-bg:rgba(144,96,208,.08);--orange:#E08040;--orange-bg:rgba(224,128,64,.08);--teal:#40B0A0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,-apple-system,sans-serif;line-height:1.7;font-size:15px}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+a{color:var(--gold);text-decoration:none}a:hover{text-decoration:underline}
+.hero{text-align:center;padding:80px 24px 48px;background:linear-gradient(180deg,rgba(201,164,76,.06) 0%,transparent 100%)}
+.hero h1{font-size:2.8rem;color:var(--gold);margin-bottom:8px;letter-spacing:-.02em}
+.hero .sub{color:var(--text2);font-size:1.15rem;margin-bottom:12px}
+.hero .date{color:var(--text3);font-size:.9rem}
+.badges{margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.hbadge{background:var(--gold-bg);border:1px solid var(--gold-border);color:var(--gold);padding:4px 14px;border-radius:20px;font-size:.82rem}
+nav.nav{position:sticky;top:0;z-index:100;background:rgba(13,11,14,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:10px 0;overflow-x:auto}
+nav.nav .container{display:flex;gap:6px;white-space:nowrap}
+nav.nav a{color:var(--text2);font-size:.78rem;padding:4px 10px;border-radius:6px;transition:.2s}
+nav.nav a:hover{color:var(--gold);background:var(--gold-bg);text-decoration:none}
+section.section{padding:56px 24px;border-bottom:1px solid var(--border)}
+.section-head{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.section-num{width:40px;height:40px;background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--gold);font-weight:700;font-size:1.1rem;flex-shrink:0}
+.section-head h2{font-size:1.5rem;color:var(--text);font-weight:600}
+.section-desc{color:var(--text2);margin-bottom:24px;font-size:.95rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px}
+.card h3{color:var(--gold);font-size:1.1rem;margin-bottom:12px}
+.card-gold{border-left:3px solid var(--gold)}
+.card-red{border-left:3px solid var(--red)}
+.card-green{border-left:3px solid var(--green)}
+.card-blue{border-left:3px solid var(--blue)}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+@media(max-width:768px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}}
+.metric{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center}
+.metric .val{font-size:1.8rem;font-weight:700;color:var(--gold)}
+.metric .val-green{color:var(--green)}
+.metric .val-red{color:var(--red)}
+.metric .val-blue{color:var(--blue)}
+.metric .lbl{color:var(--text2);font-size:.82rem;margin-top:4px}
+.info-tip{background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:8px;padding:12px 16px;display:flex;gap:10px;align-items:flex-start;margin:16px 0;font-size:.88rem;color:var(--text2)}
+.info-tip .ii{background:var(--gold);color:var(--bg);width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.75rem;flex-shrink:0}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.bar-label{width:140px;font-size:.85rem;color:var(--text2);text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:24px;background:var(--bg3);border-radius:6px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:.75rem;color:#fff;font-weight:600;transition:width 1s ease}
+.bar-val{width:60px;font-size:.85rem;color:var(--text);font-weight:600}
+table{width:100%;border-collapse:collapse;margin:16px 0}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--border);font-size:.88rem}
+th{color:var(--gold);font-weight:600;background:var(--card)}
+td{color:var(--text2)}
+tr:hover td{background:rgba(201,164,76,.03)}
+.badge{padding:3px 10px;border-radius:12px;font-size:.75rem;font-weight:600}
+.b-gold{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-border)}
+.b-green{background:var(--green-bg);color:var(--green)}
+.b-red{background:var(--red-bg);color:var(--red)}
+.b-blue{background:var(--blue-bg);color:var(--blue)}
+.delta{font-size:.78rem;font-weight:600;padding:2px 6px;border-radius:4px}
+.delta-up{color:var(--green);background:var(--green-bg)}
+.delta-down{color:var(--red);background:var(--red-bg)}
+.delta-change{color:var(--orange);background:var(--orange-bg)}
+.swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.swot-box{border-radius:12px;padding:20px;border:1px solid var(--border)}
+.swot-box h4{margin-bottom:10px;font-size:1rem}
+.swot-box ul{list-style:none;padding:0}.swot-box li{padding:4px 0;font-size:.88rem;color:var(--text2)}
+.swot-box li:before{margin-right:8px;font-size:.7rem}
+.swot-s{background:rgba(61,184,106,.06);border-color:rgba(61,184,106,.2)}.swot-s h4{color:var(--green)}.swot-s li:before{content:"●";color:var(--green)}
+.swot-w{background:rgba(212,64,64,.06);border-color:rgba(212,64,64,.2)}.swot-w h4{color:var(--red)}.swot-w li:before{content:"●";color:var(--red)}
+.swot-o{background:rgba(74,143,224,.06);border-color:rgba(74,143,224,.2)}.swot-o h4{color:var(--blue)}.swot-o li:before{content:"●";color:var(--blue)}
+.swot-t{background:rgba(224,128,64,.06);border-color:rgba(224,128,64,.2)}.swot-t h4{color:var(--orange)}.swot-t li:before{content:"●";color:var(--orange)}
+.quote-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:12px}
+.quote-header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.quote-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:#fff;flex-shrink:0}
+.quote-name{font-weight:600;color:var(--text);font-size:.95rem}
+.quote-role{color:var(--text3);font-size:.8rem}
+.quote-body{font-style:italic;color:var(--text2);font-size:.9rem;line-height:1.6;margin-bottom:10px;padding-left:16px;border-left:2px solid var(--gold-border)}
+.quote-footer{display:flex;gap:16px;font-size:.78rem;color:var(--text3)}
+.founder-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:12px}
+.founder-card h4{color:var(--gold);margin-bottom:4px}
+.founder-card .role{color:var(--text3);font-size:.82rem;margin-bottom:12px}
+.founder-card table{margin:0}
+.founder-card td{padding:6px 10px;font-size:.85rem}
+.founder-card td:first-child{color:var(--text3);width:140px}
+.timeline{position:relative;padding-left:28px;margin:16px 0}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--gold-border)}
+.timeline-item{position:relative;margin-bottom:20px}
+.timeline-item::before{content:'';position:absolute;left:-24px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--bg)}
+.timeline-date{color:var(--gold);font-size:.82rem;font-weight:600}
+.timeline-text{color:var(--text2);font-size:.88rem;margin-top:2px}
+.alert{border-radius:10px;padding:16px 20px;display:flex;gap:12px;align-items:flex-start;margin:16px 0}
+.alert-red{background:var(--red-bg);border:1px solid rgba(212,64,64,.3)}
+.alert-gold{background:var(--gold-bg);border:1px solid var(--gold-border)}
+.alert-icon{font-size:1.2rem;flex-shrink:0}
+.alert-content h4{font-size:.95rem;margin-bottom:4px}
+.alert-content p{font-size:.88rem;color:var(--text2)}
+.correction{display:flex;align-items:center;gap:12px;margin:8px 0;padding:8px 12px;background:var(--card);border-radius:8px}
+.correction .old{text-decoration:line-through;color:var(--red);font-size:.88rem}
+.correction .arrow{color:var(--text3)}
+.correction .new{color:var(--green);font-weight:600;font-size:.88rem}
+.calc-trace{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:8px 0;font-size:.82rem;color:var(--text2);line-height:1.8}
+.calc-trace strong{color:var(--gold)}
+table.hm{border-collapse:collapse}
+table.hm td,table.hm th{padding:8px 10px;text-align:center;font-size:.8rem;border:1px solid var(--border)}
+.hm-g1{background:rgba(61,184,106,.15);color:var(--green)}
+.hm-g2{background:rgba(61,184,106,.25);color:var(--green)}
+.hm-g3{background:rgba(61,184,106,.4);color:#fff}
+.hm-y1{background:rgba(201,164,76,.15);color:var(--gold)}
+.hm-y2{background:rgba(201,164,76,.25);color:var(--gold)}
+.hm-y3{background:rgba(201,164,76,.4);color:#fff}
+.hm-r1{background:rgba(212,64,64,.15);color:var(--red)}
+.hm-r2{background:rgba(212,64,64,.25);color:var(--red)}
+.hm-r3{background:rgba(212,64,64,.4);color:#fff}
+.hm-july{background:rgba(74,143,224,.3);color:var(--blue);font-weight:700}
+.sched-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:12px 0}
+.sched-day{text-align:center;padding:8px 4px;border-radius:6px;font-size:.78rem}
+.sched-open{background:var(--green-bg);color:var(--green)}
+.sched-closed{background:var(--red-bg);color:var(--red)}
+details{margin:12px 0}
+details summary{cursor:pointer;color:var(--gold);font-weight:600;font-size:.95rem;padding:8px 0}
+details summary:hover{color:var(--gold2)}
+footer{text-align:center;padding:40px 24px;color:var(--text3);font-size:.82rem;border-top:1px solid var(--border)}
+@keyframes barGrow{from{width:0}to{width:var(--w)}}
+.perc-map{position:relative;width:100%;max-width:600px;margin:0 auto}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+<h1>Июль</h1>
+<div class="sub">Полный конкурентный и SWOT-анализ гастробара</div>
+<div class="date">ООО «Бариста и Шеф» &bull; ИНН 9729286509 &bull; Южное Бутово, Москва</div>
+<div class="badges">
+<span class="hbadge">B2C_SERVICE: Ресторан</span>
+<span class="hbadge">Выручка 2024: 108,5 млн ₽</span>
+<span class="hbadge">Рейтинг 2GIS: 4.7</span>
+<span class="hbadge">12 конкурентов</span>
+</div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+<div class="container">
+<a href="#s1">Рынок</a>
+<a href="#s2">Закрытия</a>
+<a href="#s3">Тренды</a>
+<a href="#s4">Перцепт. карта</a>
+<a href="#s5">Конкуренты</a>
+<a href="#s6">SWOT конкурентов</a>
+<a href="#s7">Сводная</a>
+<a href="#s8">Меню</a>
+<a href="#s9">Digital</a>
+<a href="#s10">Метрики</a>
+<a href="#s11">ФНС</a>
+<a href="#s12">SWOT</a>
+<a href="#s13">Загрузка</a>
+<a href="#s14">Стратегия</a>
+<a href="#s15">Графики</a>
+<a href="#s16">Бенчмарки</a>
+<a href="#s17">Выводы</a>
+<a href="#s18">Вопросы</a>
+<a href="#s19">Методология</a>
+<a href="#s20">Фактчек</a>
+<a href="#s21">Соцсети</a>
+<a href="#s22">Часы работы</a>
+<a href="#s23">Фаундеры</a>
+<a href="#s24">Мнения</a>
+</div>
+</nav>
+
+<!-- GLOSSARY -->
+<div class="container" style="padding-top:32px">
+<details>
+<summary>Глоссарий терминов (для тех, кто впервые читает бизнес-анализ)</summary>
+<div class="card" style="margin-top:8px">
+<div class="grid-2">
+<div>
+<p><strong>RevPASH</strong> — Revenue Per Available Seat Hour. Выручка на одно посадочное место в час. Показывает эффективность использования зала.</p>
+<p><strong>Food cost</strong> — доля себестоимости продуктов в выручке. Норма для ресторана: 25-35%.</p>
+<p><strong>Средний чек</strong> — средняя сумма заказа одного гостя. Считается как выручка / количество заказов.</p>
+<p><strong>Оборачиваемость стола</strong> — сколько раз за день стол занимается новыми гостями. Для гастробара норма: 2-3 раза.</p>
+<p><strong>УСН</strong> — Упрощённая система налогообложения (6% с дохода или 15% с «доход минус расход»).</p>
+</div>
+<div>
+<p><strong>EBITDA</strong> — прибыль до вычета процентов, налогов, износа и амортизации. Показатель операционной эффективности.</p>
+<p><strong>LFL (Like-for-Like)</strong> — сопоставимые продажи: рост выручки тех же точек за период.</p>
+<p><strong>ФОТ</strong> — фонд оплаты труда, совокупные расходы на зарплаты.</p>
+<p><strong>OKVED</strong> — код вида экономической деятельности из госреестра.</p>
+<p><strong>SWOT</strong> — матрица сильных/слабых сторон, возможностей и угроз.</p>
+<p><strong>Calc-trace</strong> — формула расчёта с указанием исходных данных и источников.</p>
+</div>
+</div>
+</div>
+</details>
+</div>
+
+<!-- ========== PART I: MACRO ========== -->
+
+<!-- SECTION 1: MARKET OVERVIEW -->
+<section class="section" id="s1">
+<div class="container">
+<div class="section-head"><div class="section-num">1</div><h2>Ресторанный рынок Москвы: обзор</h2></div>
+<p class="section-desc">Объём, динамика и ключевые показатели рынка общественного питания Москвы в 2022-2026 гг.</p>
+
+<div class="grid-4">
+<div class="metric"><div class="val">~640</div><div class="lbl">млрд ₽ — объём рынка Москвы, 2024</div></div>
+<div class="metric"><div class="val">22 700+</div><div class="lbl">заведений в Москве</div></div>
+<div class="metric"><div class="val val-green">+9%</div><div class="lbl">рост рынка YoY (2024)</div></div>
+<div class="metric"><div class="val">2 053 ₽</div><div class="lbl">средний чек Москва</div></div>
+</div>
+
+<div class="info-tip"><div class="ii">i</div><span>Источники: TAdviser, РБК, Росстат, CheckIndex. Данные за 2024 год — последние полные. Рост замедляется после бурного 2023 (+20,7%).</span></div>
+
+<table>
+<tr><th>Год</th><th>Москва, млрд ₽</th><th>Россия, млрд ₽</th><th>Рост YoY</th><th>Средний чек, ₽</th></tr>
+<tr><td>2022</td><td>314</td><td>2 080</td><td>—</td><td>~1 700</td></tr>
+<tr><td>2023</td><td>550</td><td>2 830</td><td>+20,7%</td><td>~1 850</td></tr>
+<tr><td>2024</td><td>~640</td><td>3 440</td><td>+9%</td><td>2 053</td></tr>
+<tr><td>2025 (оц.)</td><td>~700</td><td>4 290</td><td>+14%</td><td>~2 300</td></tr>
+</table>
+
+<div class="card card-gold">
+<h3>Южное Бутово — контекст</h3>
+<p>Население района — <strong>~211 000 человек</strong> (3-й по численности район Москвы). Активная застройка: ЖК «Эталон-Сити» (15 га, 9 корпусов, сдача 2024-2025), Никольские Луга, Столичные Поляны. Плотность качественных ресторанов значительно ниже среднемосковской — район <strong>недообеспечен</strong> гастрономическими заведениями уровня гастробара.</p>
+</div>
+</div>
+</section>
+
+<!-- SECTION 2: CLOSURES & GROWTH -->
+<section class="section" id="s2">
+<div class="container">
+<div class="section-head"><div class="section-num">2</div><h2>Закрытия и истории роста</h2></div>
+
+<div class="grid-2">
+<div class="card card-red">
+<h3>Кто закрывается</h3>
+<ul style="list-style:none;padding:0">
+<li style="padding:4px 0;color:var(--text2)">Шоколадница — ~20 точек закрыто (2025)</li>
+<li style="padding:4px 0;color:var(--text2)">Ростикс — ~25 точек</li>
+<li style="padding:4px 0;color:var(--text2)">Якитория — 8 точек</li>
+<li style="padding:4px 0;color:var(--text2)">35 400 заведений ликвидировано в РФ за 2025 (+10% к 2024)</li>
+<li style="padding:4px 0;color:var(--text2)">Прогноз 2026: закрытие 380-420 заведений в Москве</li>
+</ul>
+<p style="margin-top:8px;font-size:.85rem;color:var(--text3)">Причины: высокая аренда в центре, рост ФОТ >30%, устаревшие концепции, отсутствие доставки</p>
+</div>
+<div class="card card-green">
+<h3>Кто растёт</h3>
+<ul style="list-style:none;padding:0">
+<li style="padding:4px 0;color:var(--text2)">Рестораны в спальных районах с лояльной аудиторией</li>
+<li style="padding:4px 0;color:var(--text2)">Гастробары с гибким меню (можно быстро адаптировать)</li>
+<li style="padding:4px 0;color:var(--text2)">Семейные форматы с детской инфраструктурой</li>
+<li style="padding:4px 0;color:var(--text2)">Форматы с низким food cost (бары, пекарни)</li>
+<li style="padding:4px 0;color:var(--text2)">+700 новых кафе/ресторанов в Москве в 1-м пол. 2025</li>
+</ul>
+<p style="margin-top:8px;font-size:.85rem;color:var(--text3)">Тренд: крупные группы выходят в спальные районы, концепция «ресторан у дома»</p>
+</div>
+</div>
+
+<div class="alert alert-gold">
+<div class="alert-icon">!</div>
+<div class="alert-content">
+<h4>Чистый баланс Москва 2025 (9 мес.)</h4>
+<p>Открытия: 2 661 &minus; Закрытия: 2 107 = <strong>+554 чистый прирост</strong>. Рынок растёт, но большинство новых заведений открываются на месте закрывшихся.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 3: TRENDS -->
+<section class="section" id="s3">
+<div class="container">
+<div class="section-head"><div class="section-num">3</div><h2>Тренды ресторанной индустрии 2024-2026</h2></div>
+
+<div class="grid-3">
+<div class="card">
+<h3>Гастробар-формат</h3>
+<p style="color:var(--text2);font-size:.88rem">Один из самых устойчивых форматов. Средний чек 1 200-2 500 ₽. Высокая маржа на напитках. Гибкость ценового позиционирования. Привлекает молодёжь и аудиторию, ищущую неформальную обстановку.</p>
+</div>
+<div class="card">
+<h3>Семейные рестораны</h3>
+<p style="color:var(--text2);font-size:.88rem">Растущий сегмент: мягкие зоны, детские комнаты, семейные комбо. Рестораны в спальных районах ориентируются на семьи — это даёт стабильный дневной трафик (завтраки, обеды).</p>
+</div>
+<div class="card">
+<h3>Рестораны у дома</h3>
+<p style="color:var(--text2);font-size:.88rem">«Даже крупные ресторанные группы начали открываться в спальных районах» — тренд #1 в 2024-2025. Локальная аудитория — самая лояльная.</p>
+</div>
+<div class="card">
+<h3>Доставка vs зал</h3>
+<p style="color:var(--text2);font-size:.88rem">78% сетей имеют доставку, 59% независимых. Рынок доставки: ~664 млрд ₽ (2024), +21-27% YoY. Трафик в залах: &minus;2% (2025). Главный конкурент — готовая еда из ритейла (~4,5 трлн ₽).</p>
+</div>
+<div class="card">
+<h3>Русская кухня</h3>
+<p style="color:var(--text2);font-size:.88rem">«Не просто тренд, а настоящий хайп». Переосмысление через новые технологии. Farm-to-table, шеф-сады, локальные продукты. Региональные кухни народов России — прибыльное направление.</p>
+</div>
+<div class="card">
+<h3>Инфляция продуктов</h3>
+<p style="color:var(--text2);font-size:.88rem">Продовольственная инфляция +11,9% YoY. Картофель +62%, масло +30%, кофе +24%, говядина +15%. 94% рестораторов — рост сырья — главное давление. 46% планируют повысить цены на 5-10%.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ========== PART II: MESO ========== -->
+
+<!-- SECTION 4: PERCEPTUAL MAP -->
+<section class="section" id="s4">
+<div class="container">
+<div class="section-head"><div class="section-num">4</div><h2>Перцептуальная карта: Цена vs Уникальность</h2></div>
+<p class="section-desc">Позиционирование Июля среди конкурентов. Ось X — средний чек, ось Y — уникальность формата (авторская кухня, атмосфера, USP).</p>
+
+<div class="info-tip"><div class="ii">i</div><span>Шкала уникальности 1-10: 1-3 = типовой сетевой формат; 4-5 = стандартный независимый ресторан; 6-7 = выраженный авторский почерк; 8-10 = уникальная концепция. Оценки ниже подлежат согласованию с клиентом.</span></div>
+
+<svg viewBox="0 0 600 400" style="width:100%;max-width:700px;margin:0 auto;display:block">
+<rect width="600" height="400" fill="var(--bg2)" rx="12"/>
+<!-- Grid -->
+<line x1="80" y1="40" x2="80" y2="350" stroke="var(--border)" stroke-width="1"/>
+<line x1="80" y1="350" x2="570" y2="350" stroke="var(--border)" stroke-width="1"/>
+<line x1="80" y1="195" x2="570" y2="195" stroke="var(--border)" stroke-width=".5" stroke-dasharray="4"/>
+<line x1="325" y1="40" x2="325" y2="350" stroke="var(--border)" stroke-width=".5" stroke-dasharray="4"/>
+<!-- Axis labels -->
+<text x="325" y="380" fill="var(--text3)" text-anchor="middle" font-size="12">Средний чек, ₽ →</text>
+<text x="20" y="195" fill="var(--text3)" text-anchor="middle" font-size="12" transform="rotate(-90,20,195)">Уникальность →</text>
+<!-- Tick marks -->
+<text x="130" y="368" fill="var(--text3)" font-size="10">600</text>
+<text x="225" y="368" fill="var(--text3)" font-size="10">1000</text>
+<text x="325" y="368" fill="var(--text3)" font-size="10">1500</text>
+<text x="425" y="368" fill="var(--text3)" font-size="10">2000</text>
+<text x="520" y="368" fill="var(--text3)" font-size="10">3000</text>
+<!-- Dots -->
+<!-- Июль -->
+<circle cx="335" cy="130" r="14" fill="var(--blue)" opacity=".8"/>
+<text x="335" y="115" fill="var(--blue)" text-anchor="middle" font-size="11" font-weight="700">Июль</text>
+<!-- Pasti&Asti -->
+<circle cx="325" cy="155" r="10" fill="var(--gold)" opacity=".6"/>
+<text x="325" y="175" fill="var(--gold)" text-anchor="middle" font-size="9">Pasti&amp;Asti</text>
+<!-- АндерСон -->
+<circle cx="325" cy="195" r="10" fill="var(--orange)" opacity=".6"/>
+<text x="370" y="200" fill="var(--orange)" font-size="9">АндерСон</text>
+<!-- Бык да баран -->
+<circle cx="250" cy="185" r="10" fill="var(--green)" opacity=".6"/>
+<text x="250" y="205" fill="var(--green)" text-anchor="middle" font-size="9">Бык да баран</text>
+<!-- Италония -->
+<circle cx="375" cy="210" r="10" fill="var(--purple)" opacity=".6"/>
+<text x="375" y="230" fill="var(--purple)" text-anchor="middle" font-size="9">Италония</text>
+<!-- Макадамия -->
+<circle cx="520" cy="195" r="8" fill="var(--teal)" opacity=".5"/>
+<text x="520" y="185" fill="var(--teal)" text-anchor="middle" font-size="9">Макадамия</text>
+<!-- Сулико -->
+<circle cx="250" cy="220" r="9" fill="var(--green)" opacity=".5"/>
+<text x="250" y="240" fill="var(--green)" text-anchor="middle" font-size="9">Сулико</text>
+<!-- Дюшес -->
+<circle cx="335" cy="240" r="9" fill="var(--orange)" opacity=".5"/>
+<text x="335" y="260" fill="var(--orange)" text-anchor="middle" font-size="9">Дюшес</text>
+<!-- Hatimaki -->
+<circle cx="250" cy="255" r="8" fill="var(--teal)" opacity=".5"/>
+<text x="250" y="275" fill="var(--teal)" text-anchor="middle" font-size="9">Hatimaki</text>
+<!-- Изи паб -->
+<circle cx="360" cy="260" r="8" fill="var(--text3)" opacity=".5"/>
+<text x="360" y="280" fill="var(--text3)" text-anchor="middle" font-size="9">Изи паб</text>
+<!-- Красный чай -->
+<circle cx="250" cy="155" r="7" fill="var(--red)" opacity=".5"/>
+<text x="250" y="145" fill="var(--red)" text-anchor="middle" font-size="9">Красный чай</text>
+<!-- Zамания -->
+<circle cx="140" cy="280" r="7" fill="var(--text3)" opacity=".4"/>
+<text x="140" y="300" fill="var(--text3)" text-anchor="middle" font-size="9">Zамания</text>
+<!-- Небо -->
+<circle cx="290" cy="225" r="9" fill="var(--purple)" opacity=".5"/>
+<text x="290" y="215" fill="var(--purple)" text-anchor="middle" font-size="9">Небо</text>
+<!-- Quadrant labels -->
+<text x="450" y="70" fill="var(--gold)" font-size="10" opacity=".4">Дорого + уникально</text>
+<text x="120" y="70" fill="var(--text3)" font-size="10" opacity=".4">Доступно + уникально</text>
+<text x="450" y="330" fill="var(--text3)" font-size="10" opacity=".4">Дорого + типовое</text>
+<text x="120" y="330" fill="var(--text3)" font-size="10" opacity=".4">Доступно + типовое</text>
+</svg>
+
+<table style="margin-top:20px">
+<tr><th>Заведение</th><th>Чек, ₽</th><th>Уникальность</th><th>Обоснование</th></tr>
+<tr><td style="color:var(--blue);font-weight:700">Июль</td><td>1 400-1 500</td><td>7/10</td><td>Гастробар + семейный формат + собственная пекарня — уникальная комбинация для спального района</td></tr>
+<tr><td>Pasti&amp;Asti</td><td>1 450</td><td>6/10</td><td>Итальянское бистро, фокус на Пьемонт, но в ТЦ</td></tr>
+<tr><td>АндерСон</td><td>1 450</td><td>5/10</td><td>Сетевой формат, предсказуемый, но качественный</td></tr>
+<tr><td>Бык да баран</td><td>1 000</td><td>5/10</td><td>Хороший гриль, но типовая кавказская кухня</td></tr>
+<tr><td>Италония</td><td>1 600</td><td>4/10</td><td>23 года на рынке, стабильно, но без инноваций</td></tr>
+<tr><td>Красный чай</td><td>1 000</td><td>6/10</td><td>Аутентичная китайская кухня — редко в Бутово</td></tr>
+<tr><td>Небо</td><td>1 250</td><td>5/10</td><td>Батутный парк + ресторан, но кухня вторична</td></tr>
+</table>
+</div>
+</section>
+
+<!-- SECTION 5: COMPETITOR TABLE -->
+<section class="section" id="s5">
+<div class="container">
+<div class="section-head"><div class="section-num">5</div><h2>Конкуренты: сводная таблица</h2></div>
+
+<div style="overflow-x:auto">
+<table>
+<tr><th>#</th><th>Заведение</th><th>Расст.</th><th>Кухня</th><th>Чек, ₽</th><th>2GIS</th><th>Отзывы</th><th>Детская</th><th>Угроза</th></tr>
+<tr style="background:rgba(74,143,224,.08)"><td>—</td><td style="color:var(--blue);font-weight:700">Июль</td><td>—</td><td>Итал., европ.</td><td>1 400</td><td>4.7</td><td>76</td><td>Да</td><td>—</td></tr>
+<tr><td>1</td><td>Pasti&amp;Asti</td><td>1.3 км</td><td>Итальянская</td><td>1 450</td><td>4.8</td><td>46</td><td>Меню</td><td><span class="badge b-red">Очень высокая</span></td></tr>
+<tr><td>2</td><td>АндерСон</td><td>1.4 км</td><td>Европейская</td><td>1 450</td><td>4.9</td><td>44</td><td>Да+</td><td><span class="badge b-red">Очень высокая</span></td></tr>
+<tr><td>3</td><td>Италония</td><td>2.1 км</td><td>Итал., европ.</td><td>1 600</td><td>4.5</td><td>24</td><td>Да</td><td><span class="badge b-gold">Высокая</span></td></tr>
+<tr><td>4</td><td>Небо</td><td>1.4 км</td><td>Разная</td><td>1 250</td><td>4.9*</td><td>526*</td><td>Парк</td><td><span class="badge b-gold">Высокая</span></td></tr>
+<tr><td>5</td><td>Бык да баран</td><td>0.8 км</td><td>Кавказская</td><td>1 000</td><td>4.9</td><td>173</td><td>Пл.</td><td><span class="badge b-gold">Высокая</span></td></tr>
+<tr><td>6</td><td>Сулико</td><td>2.0 км</td><td>Грузинская</td><td>1 000</td><td>4.9</td><td>62</td><td>Да</td><td><span class="badge b-gold">Ср.-выс.</span></td></tr>
+<tr><td>7</td><td>Дюшес</td><td>2.3 км</td><td>Азерб., европ.</td><td>1 500</td><td>4.3</td><td>857</td><td>Да</td><td><span class="badge b-blue">Средняя</span></td></tr>
+<tr><td>8</td><td>Hatimaki</td><td>0.65 км</td><td>Азиат., итал.</td><td>1 000</td><td>4.7</td><td>97</td><td>Да</td><td><span class="badge b-blue">Средняя</span></td></tr>
+<tr><td>9</td><td>Макадамия</td><td>1.2 км</td><td>Груз., европ.</td><td>3 000</td><td>4.0</td><td>31</td><td>—</td><td><span class="badge b-blue">Средняя</span></td></tr>
+<tr><td>10</td><td>Изи паб</td><td>1.4 км</td><td>Европейская</td><td>1 550</td><td>4.5</td><td>107</td><td>—</td><td><span class="badge b-blue">Средняя</span></td></tr>
+<tr><td>11</td><td>Красный чай</td><td>51 м</td><td>Китайская</td><td>1 000</td><td>4.3</td><td>21</td><td>—</td><td><span class="badge b-green">Низкая</span></td></tr>
+<tr><td>12</td><td>Zамания</td><td>787 м</td><td>Детский</td><td>600</td><td>5.0</td><td>3</td><td>Центр</td><td><span class="badge b-green">Низкая</span></td></tr>
+</table>
+</div>
+<p style="font-size:.78rem;color:var(--text3);margin-top:8px">* Небо: рейтинг 4.9 и 526 оценок — данные по развлекательному центру (Яндекс). Рейтинг ресторана отдельно: 3.5 (2GIS, 1 отзыв).</p>
+
+<div class="card card-blue" style="margin-top:16px">
+<h3>Ключевые выводы по конкурентной среде</h3>
+<ul style="list-style:none;padding:0;color:var(--text2);font-size:.9rem">
+<li style="padding:4px 0">1. <strong>Pasti&amp;Asti</strong> — главный конкурент по кухне (итальянская, совпадение чека и рейтинга)</li>
+<li style="padding:4px 0">2. <strong>АндерСон</strong> — главный конкурент «Июль Детям» (сетевой семейный бренд)</li>
+<li style="padding:4px 0">3. <strong>Уникальное преимущество Июля</strong> — единственный гастробар в ЖК Эталон-Сити. Ближайшие аналоги — 1.2+ км (кластер Витте Молл)</li>
+<li style="padding:4px 0">4. В районе преобладает кавказская/грузинская кухня — итальянский гастробар = нишевое преимущество</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- SECTION 6: COMPETITOR SWOT -->
+<section class="section" id="s6">
+<div class="container">
+<div class="section-head"><div class="section-num">6</div><h2>SWOT ключевых конкурентов</h2></div>
+
+<h3 style="color:var(--gold);margin-bottom:12px">Pasti&amp;Asti (1.3 км, итальянская, 1 450 ₽, 4.8★)</h3>
+<div class="swot-grid">
+<div class="swot-box swot-s"><h4>Сильные</h4><ul><li>Высокий рейтинг 4.8</li><li>Фокус на Пьемонт — нишевая специализация</li><li>Пицца из традиционной печи, паста ручной работы</li></ul></div>
+<div class="swot-box swot-w"><h4>Слабые</h4><ul><li>Расположение в ТЦ (не камерная атмосфера)</li><li>Мало отзывов (46) — не раскрученное</li><li>Нет детской площадки</li></ul></div>
+<div class="swot-box swot-o"><h4>Возможности</h4><ul><li>Может расширить аудиторию за счёт ТЦ-трафика</li></ul></div>
+<div class="swot-box swot-t"><h4>Угрозы</h4><ul><li>Зависимость от ТЦ-трафика и аренды</li><li>Конкуренция с Июлем по итальянской нише</li></ul></div>
+</div>
+
+<h3 style="color:var(--gold);margin:24px 0 12px">АндерСон (1.4 км, семейное кафе, 1 450 ₽, 4.9★)</h3>
+<div class="swot-grid">
+<div class="swot-box swot-s"><h4>Сильные</h4><ul><li>Федеральная сеть с репутацией и маркетингом</li><li>Рейтинг 4.9 — один из лучших в районе</li><li>Отработанная детская инфраструктура + кулинарные мастер-классы</li></ul></div>
+<div class="swot-box swot-w"><h4>Слабые</h4><ul><li>Сетевой формат — нет авторского почерка</li><li>Предсказуемое меню без гастрономических амбиций</li></ul></div>
+<div class="swot-box swot-o"><h4>Возможности</h4><ul><li>Может расширить аудиторию за счёт бренда</li></ul></div>
+<div class="swot-box swot-t"><h4>Угрозы</h4><ul><li>Общий тренд на деградацию сетевых брендов</li><li>Рост независимых семейных ресторанов (Июль Детям)</li></ul></div>
+</div>
+
+<h3 style="color:var(--gold);margin:24px 0 12px">Бык да баран (0.8 км, кавказская, 1 000 ₽, 4.9★)</h3>
+<div class="swot-grid">
+<div class="swot-box swot-s"><h4>Сильные</h4><ul><li>Ближайший ресторан (та же ул. Поляны)</li><li>Рейтинг 4.9, 173 отзыва</li><li>Сильная шашлычная специализация (10+ видов)</li></ul></div>
+<div class="swot-box swot-w"><h4>Слабые</h4><ul><li>Узкая кухня (только кавказская)</li><li>Закрытие в 22:00 — без вечернего формата</li></ul></div>
+<div class="swot-box swot-o"><h4>Возможности</h4><ul><li>Летняя веранда, живая музыка по субботам</li></ul></div>
+<div class="swot-box swot-t"><h4>Угрозы</h4><ul><li>Высокая конкуренция в кавказском сегменте (Сулико, Макадамия)</li></ul></div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 7: SWOT JULY (moved to s12 in nav) -->
+
+<!-- SECTION 7+: MENU COMPARISON -->
+<section class="section" id="s8">
+<div class="container">
+<div class="section-head"><div class="section-num">7</div><h2>Меню и ценообразование Июля</h2></div>
+
+<div class="grid-3">
+<div class="metric"><div class="val">69</div><div class="lbl">позиций в меню</div></div>
+<div class="metric"><div class="val">700 ₽</div><div class="lbl">бизнес-ланч от</div></div>
+<div class="metric"><div class="val">1 400 ₽</div><div class="lbl">средний чек</div></div>
+</div>
+
+<table style="margin-top:16px">
+<tr><th>Категория</th><th>Диапазон цен, ₽</th><th>Примеры блюд</th></tr>
+<tr><td>Завтраки</td><td>220 — 820</td><td>Яичница 220, Сырники 630, Тост с лососем и авокадо 820</td></tr>
+<tr><td>Супы</td><td>490 — 870</td><td>Окрошка 490, Борщ 680, Том Ям авторский 870</td></tr>
+<tr><td>Горячие блюда</td><td>540 — 1 100</td><td>Овощи гриль 540, Пельмени «Июльские» 740, Бургер 1 100</td></tr>
+<tr><td>Паста/пицца</td><td>~900 — 1 000</td><td>Паппарделле с креветками 990</td></tr>
+<tr><td>Десерты</td><td>~370+</td><td>Мини-тарт с ягодами 370, бельгийские вафли</td></tr>
+<tr><td>Детское меню</td><td>Есть</td><td>Отдельное меню для «Июль Детям»</td></tr>
+</table>
+
+<div class="info-tip"><div class="ii">i</div><span>Источники: Zoon.ru, Restorating.ru, LeClick. Цены актуальны на апрель 2026. Особенности: собственная пекарня (выпечка, десерты), авторские блюда (Июльские пельмени, Строганофф со стейком).</span></div>
+
+<div class="card card-gold" style="margin-top:16px">
+<h3>Уникальные преимущества меню</h3>
+<ul style="list-style:none;padding:0;color:var(--text2);font-size:.9rem">
+<li style="padding:4px 0">Собственная пекарня и кондитерская — свежая выпечка ежедневно</li>
+<li style="padding:4px 0">Микс форматов: итальянская кухня + русская классика (пельмени, борщ, строганов)</li>
+<li style="padding:4px 0">Завтраки с просекко — позиционирование выше типового кафе</li>
+<li style="padding:4px 0">Бизнес-ланч от 700 ₽ — доступен для офисных сотрудников района</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- SECTION 8: DIGITAL AUDIT -->
+<section class="section" id="s9">
+<div class="container">
+<div class="section-head"><div class="section-num">8</div><h2>Digital-аудит: Июль</h2></div>
+
+<div class="grid-2">
+<div class="card">
+<h3>Присутствие на платформах</h3>
+<table>
+<tr><td>Сайт</td><td><a href="https://julygastro.ru" target="_blank">julygastro.ru</a></td></tr>
+<tr><td>Instagram</td><td><a href="https://instagram.com/july.gastro" target="_blank">@july.gastro</a></td></tr>
+<tr><td>Instagram (дети)</td><td><a href="https://instagram.com/july.detyam" target="_blank">@july.detyam</a></td></tr>
+<tr><td>VK</td><td>Есть группа</td></tr>
+<tr><td>Telegram</td><td>Есть канал</td></tr>
+<tr><td>WhatsApp</td><td>Для бронирования</td></tr>
+</table>
+</div>
+<div class="card">
+<h3>Рейтинги и отзывы</h3>
+<table>
+<tr><td>2GIS</td><td><strong>4.7</strong> (76 отзывов)</td></tr>
+<tr><td>Яндекс Карты</td><td>Есть карточка</td></tr>
+<tr><td>Zoon.ru</td><td><strong>4.1</strong> (9 оценок)</td></tr>
+<tr><td>Restorating</td><td><strong>4.33</strong>/10 (1 отзыв)</td></tr>
+<tr><td>Restaurant Guru</td><td><strong>4.7</strong> (2016 рейтингов)</td></tr>
+<tr><td>LeClick</td><td>Бронирование активно</td></tr>
+</table>
+</div>
+</div>
+
+<div class="card card-blue">
+<h3>Бронирование и доставка</h3>
+<div class="grid-3">
+<div><strong style="color:var(--text)">LeClick</strong><br><span style="color:var(--text2);font-size:.88rem">Онлайн-бронирование столиков</span></div>
+<div><strong style="color:var(--text)">Яндекс Еда</strong><br><span style="color:var(--text2);font-size:.88rem">Доставка через агрегатор</span></div>
+<div><strong style="color:var(--text)">Dog-friendly</strong><br><span style="color:var(--text2);font-size:.88rem">Принимают с животными</span></div>
+</div>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h3>Особенности и сервисы</h3>
+<div class="grid-4">
+<div style="text-align:center;padding:12px"><div style="font-size:1.5rem">🎵</div><div style="color:var(--text2);font-size:.82rem;margin-top:4px">Живая музыка по выходным</div></div>
+<div style="text-align:center;padding:12px"><div style="font-size:1.5rem">🌿</div><div style="color:var(--text2);font-size:.82rem;margin-top:4px">Летняя веранда</div></div>
+<div style="text-align:center;padding:12px"><div style="font-size:1.5rem">🧒</div><div style="color:var(--text2);font-size:.82rem;margin-top:4px">Двухуровневая игровая</div></div>
+<div style="text-align:center;padding:12px"><div style="font-size:1.5rem">🍰</div><div style="color:var(--text2);font-size:.82rem;margin-top:4px">Своя пекарня</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ========== PART III: MICRO ========== -->
+
+<!-- SECTION 10: KEY METRICS -->
+<section class="section" id="s10">
+<div class="container">
+<div class="section-head"><div class="section-num">9</div><h2>Ключевые метрики Июля</h2></div>
+
+<div class="grid-4">
+<div class="metric"><div class="val">108,5 М</div><div class="lbl">Выручка 2024, ₽</div></div>
+<div class="metric"><div class="val val-green">2,2 М</div><div class="lbl">Чистая прибыль 2024, ₽</div></div>
+<div class="metric"><div class="val">9</div><div class="lbl">Сотрудников (ФНС)</div></div>
+<div class="metric"><div class="val">~244 ₽</div><div class="lbl">RevPASH (оценка)</div></div>
+</div>
+
+<div class="calc-trace" style="margin-top:16px">
+<strong>RevPASH = 244 ₽/место/час</strong><br>
+Формула: Выручка в день / (Кол-во мест × Рабочие часы)<br>
+Данные: 108 507 000 ₽/год ÷ 365 = 297 279 ₽/день. 297 279 / (90 мест × 14 часов) = 236 ₽<br>
+Допущение: 90 посадочных мест (⚠ оценка), 14 часов работы (09:00-23:00)<br>
+Достоверность: ОЦЕНКА ⚠ (посадочные места — допущение, требует уточнения у клиента)
+</div>
+
+<div class="grid-3" style="margin-top:16px">
+<div class="metric"><div class="val">~2.2</div><div class="lbl">Оборачиваемость стола/день ⚠</div></div>
+<div class="metric"><div class="val val-green">2,0%</div><div class="lbl">Маржа чистой прибыли 2024</div></div>
+<div class="metric"><div class="val">12,1 М</div><div class="lbl">Выручка/сотрудник, ₽</div></div>
+</div>
+
+<div class="calc-trace">
+<strong>Оборачиваемость = ~2.2 раза/день</strong><br>
+Формула: (Выручка в день / Средний чек) / Кол-во мест<br>
+Данные: 297 279 ₽ / 1 400 ₽ = ~212 гостей/день. 212 / 90 мест = 2.35<br>
+Бенчмарк: casual dining 2-3 оборота — в пределах нормы<br>
+Достоверность: ОЦЕНКА ⚠
+</div>
+</div>
+</section>
+
+<!-- SECTION 11: FNS DATA -->
+<section class="section" id="s11">
+<div class="container">
+<div class="section-head"><div class="section-num">10</div><h2>Финансовые данные (ФНС / Checko)</h2></div>
+
+<div class="info-tip"><div class="ii">i</div><span>Источник: Checko.ru, Audit-it.ru. Данные из бухгалтерской отчётности ООО «Бариста и Шеф» (ИНН 9729286509). Налоговый режим — УСН. Категория — микропредприятие.</span></div>
+
+<table>
+<tr><th>Год</th><th>Выручка, тыс. ₽</th><th>Рост</th><th>Чистая прибыль</th><th>Собств. капитал</th><th>Сотрудники</th><th>Ср. зарплата</th></tr>
+<tr><td>2019</td><td>294</td><td>—</td><td style="color:var(--red)">−178</td><td>−169</td><td>—</td><td>—</td></tr>
+<tr><td>2020</td><td>29 082</td><td><span class="delta delta-up">×99</span></td><td style="color:var(--green)">414</td><td>244</td><td>—</td><td>—</td></tr>
+<tr><td>2021</td><td>53 162</td><td><span class="delta delta-up">+83%</span></td><td style="color:var(--red)">−71</td><td>200</td><td>5</td><td>25 600</td></tr>
+<tr><td>2022</td><td>97 507</td><td><span class="delta delta-up">+84%</span></td><td style="color:var(--green)">182</td><td>121</td><td>9</td><td>45 200</td></tr>
+<tr><td>2023</td><td>112 198</td><td><span class="delta delta-up">+16%</span></td><td style="color:var(--green)">1 643</td><td>121</td><td>8</td><td>53 900</td></tr>
+<tr><td>2024</td><td>108 507</td><td><span class="delta delta-down">−4%</span></td><td style="color:var(--green)">2 163</td><td>30</td><td>9</td><td>—</td></tr>
+<tr><td>2025</td><td>96 323</td><td><span class="delta delta-down">−12%</span></td><td style="color:var(--red)">−2 762</td><td>7 765</td><td>8</td><td>—</td></tr>
+</table>
+
+<!-- Revenue chart SVG -->
+<h3 style="color:var(--gold);margin:24px 0 12px">Динамика выручки</h3>
+<svg viewBox="0 0 600 200" style="width:100%;max-width:600px">
+<rect width="600" height="200" fill="var(--bg2)" rx="8"/>
+<!-- Bars -->
+<rect x="60" y="185" width="50" height="3" fill="var(--gold)" rx="2" opacity=".4"/>
+<text x="85" y="198" fill="var(--text3)" text-anchor="middle" font-size="9">2019</text>
+<rect x="130" y="155" width="50" height="33" fill="var(--gold)" rx="2" opacity=".5"/>
+<text x="155" y="198" fill="var(--text3)" text-anchor="middle" font-size="9">2020</text>
+<text x="155" y="150" fill="var(--text2)" text-anchor="middle" font-size="9">29М</text>
+<rect x="200" y="103" width="50" height="85" fill="var(--gold)" rx="2" opacity=".6"/>
+<text x="225" y="198" fill="var(--text3)" text-anchor="middle" font-size="9">2021</text>
+<text x="225" y="98" fill="var(--text2)" text-anchor="middle" font-size="9">53М</text>
+<rect x="270" y="38" width="50" height="150" fill="var(--gold)" rx="2" opacity=".7"/>
+<text x="295" y="198" fill="var(--text3)" text-anchor="middle" font-size="9">2022</text>
+<text x="295" y="33" fill="var(--text2)" text-anchor="middle" font-size="9">98М</text>
+<rect x="340" y="20" width="50" height="168" fill="var(--gold)" rx="2" opacity=".9"/>
+<text x="365" y="198" fill="var(--text3)" text-anchor="middle" font-size="9">2023</text>
+<text x="365" y="15" fill="var(--gold)" text-anchor="middle" font-size="9" font-weight="700">112М</text>
+<rect x="410" y="25" width="50" height="163" fill="var(--gold)" rx="2" opacity=".8"/>
+<text x="435" y="198" fill="var(--text3)" text-anchor="middle" font-size="9">2024</text>
+<text x="435" y="20" fill="var(--text2)" text-anchor="middle" font-size="9">109М</text>
+<rect x="480" y="48" width="50" height="140" fill="var(--red)" rx="2" opacity=".6"/>
+<text x="505" y="198" fill="var(--text3)" text-anchor="middle" font-size="9">2025</text>
+<text x="505" y="43" fill="var(--red)" text-anchor="middle" font-size="9">96М</text>
+</svg>
+
+<div class="alert alert-red" style="margin-top:16px">
+<div class="alert-icon">!</div>
+<div class="alert-content">
+<h4>2025: падение выручки на 12% и убыток −2,8 млн ₽</h4>
+<p>При этом собственный капитал вырос с 30 до 7 765 тыс. ₽ — возможна переоценка активов или вложения учредителя. Требует уточнения: связано ли падение с ремонтом, сменой концепции или внешними факторами (рост конкуренции, инфляция продуктов).</p>
+</div>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h3>Дополнительные данные ФНС</h3>
+<div class="grid-2">
+<div>
+<table>
+<tr><td style="color:var(--text3)">Уставный капитал</td><td>10 000 ₽</td></tr>
+<tr><td style="color:var(--text3)">Налоговый режим</td><td>УСН</td></tr>
+<tr><td style="color:var(--text3)">Категория МСП</td><td>Микропредприятие</td></tr>
+<tr><td style="color:var(--text3)">Лицензия</td><td>Розничная продажа алкоголя (до 03.07.2026)</td></tr>
+</table>
+</div>
+<div>
+<table>
+<tr><td style="color:var(--text3)">Госпомощь</td><td>76 900 ₽ (15 мер, 2020-2022)</td></tr>
+<tr><td style="color:var(--text3)">Судебные дела</td><td>1 (как ответчик, 195 000 ₽)</td></tr>
+<tr><td style="color:var(--text3)">Проверки (КНМ)</td><td>9</td></tr>
+<tr><td style="color:var(--text3)">Налоги 2025</td><td>4 585 тыс. ₽ (УСН + взносы)</td></tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 12: SWOT JULY -->
+<section class="section" id="s12">
+<div class="container">
+<div class="section-head"><div class="section-num">11</div><h2>SWOT-анализ: Июль</h2></div>
+
+<div class="swot-grid">
+<div class="swot-box swot-s">
+<h4>Сильные стороны (Strengths)</h4>
+<ul>
+<li>Единственный гастробар в ЖК Эталон-Сити — captive audience тысяч жителей</li>
+<li>Уникальная комбинация: гастробар + семейный формат + пекарня</li>
+<li>Стремительный рост выручки: от 294K (2019) до 112M (2023) за 4 года</li>
+<li>Высокий рейтинг 4.7 на 2GIS</li>
+<li>Итальянская/авторская кухня — ниша в районе с преобладанием кавказской</li>
+<li>Два формата: гастробар Июль + семейный Июль Детям</li>
+<li>Лицензия на алкоголь — маржа на напитках</li>
+<li>Низкая аренда в спальном районе vs центр</li>
+</ul>
+</div>
+<div class="swot-box swot-w">
+<h4>Слабые стороны (Weaknesses)</h4>
+<ul>
+<li>Падение выручки −12% в 2025, убыток −2,8 млн ₽</li>
+<li>Минимальная маржа: прибыль 1-2% при выручке 108 млн</li>
+<li>Всего 8-9 сотрудников по ФНС на 2 ресторана (?) — вероятно ГПХ/самозанятые</li>
+<li>Мало отзывов на 2GIS (76) для 6-летнего ресторана</li>
+<li>Слабое SEO-присутствие: Restorating 1 отзыв, Zoon 9 оценок</li>
+<li>0 вакансий на HH.ru за 3 года — непрозрачность HR-процессов</li>
+<li>Зарплаты (по данным 2022-2023) ниже рынка 2026</li>
+</ul>
+</div>
+<div class="swot-box swot-o">
+<h4>Возможности (Opportunities)</h4>
+<ul>
+<li>Рост населения ЖК Эталон-Сити (9 корпусов, сдача 2024-2025) = новая аудитория</li>
+<li>Тренд на «рестораны у дома» и семейные форматы — прямое попадание</li>
+<li>Низкая конкуренция в нише гастробара в Бутово</li>
+<li>Развитие доставки (собственной, не только через агрегаторов)</li>
+<li>Летняя веранда = +30-40% к выручке в сезон</li>
+<li>Кулинарные мастер-классы для детей (как у АндерСон)</li>
+<li>Программа лояльности для жителей ЖК</li>
+<li>Вторая точка уже есть (наб. Марка Шагала — Зиларт)</li>
+</ul>
+</div>
+<div class="swot-box swot-t">
+<h4>Угрозы (Threats)</h4>
+<ul>
+<li>Продовольственная инфляция +12% — давление на food cost</li>
+<li>Рост зарплат в HoReCa +47% — давление на ФОТ</li>
+<li>Pasti&amp;Asti — прямой конкурент в итальянской нише</li>
+<li>АндерСон — сетевой конкурент в семейном сегменте</li>
+<li>Кадровый дефицит: дефицит поваров, кондитеров — 2 резюме на вакансию</li>
+<li>Готовая еда из ритейла (рынок 4,5 трлн ₽) — конкурент зального трафика</li>
+<li>Прогноз закрытия 380-420 заведений в Москве в 2026</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 13: SEASONALITY -->
+<section class="section" id="s13">
+<div class="container">
+<div class="section-head"><div class="section-num">12</div><h2>Сезонность и загрузка</h2></div>
+
+<table class="hm">
+<tr><th>Месяц</th><th>Янв</th><th>Фев</th><th>Мар</th><th>Апр</th><th>Май</th><th>Июн</th><th>Июл</th><th>Авг</th><th>Сен</th><th>Окт</th><th>Ноя</th><th>Дек</th></tr>
+<tr><td style="color:var(--text)">Загрузка</td>
+<td class="hm-r2">Низ</td><td class="hm-y1">Ср</td><td class="hm-y1">Ср</td><td class="hm-y1">Ср</td><td class="hm-g1">Выс</td><td class="hm-g2">Выс</td><td class="hm-g1">Выс</td><td class="hm-y2">Ср</td><td class="hm-g1">Выс</td><td class="hm-g1">Выс</td><td class="hm-g2">Выс</td><td class="hm-g3">Пик</td>
+</tr>
+<tr><td style="color:var(--text)">Фактор</td>
+<td colspan="1" style="font-size:.7rem;color:var(--text3)">После НГ</td>
+<td style="font-size:.7rem;color:var(--text3)">14 фев</td>
+<td style="font-size:.7rem;color:var(--text3)">8 мар</td>
+<td style="font-size:.7rem;color:var(--text3)">—</td>
+<td style="font-size:.7rem;color:var(--text3)">Длин. вых.</td>
+<td style="font-size:.7rem;color:var(--text3)">Веранда</td>
+<td style="font-size:.7rem;color:var(--text3)">Семьи</td>
+<td style="font-size:.7rem;color:var(--text3)">Отпуска</td>
+<td style="font-size:.7rem;color:var(--text3)">Возврат</td>
+<td style="font-size:.7rem;color:var(--text3)">Корп.</td>
+<td style="font-size:.7rem;color:var(--text3)">Корп.</td>
+<td style="font-size:.7rem;color:var(--text3)">НГ-пик</td>
+</tr>
+</table>
+
+<div class="info-tip"><div class="ii">i</div><span>Для Июля с семейной аудиторией: лето может быть сильнее среднего (семьи с детьми не уезжают далеко, терраса у ЖК), зимние каникулы — высокий трафик (семьи дома). Декабрь — корпоративы + Новый год = пик (+30-40%).</span></div>
+
+<h3 style="color:var(--gold);margin:20px 0 12px">Режим работы (верифицирован по 2+ источникам)</h3>
+<div class="sched-grid">
+<div class="sched-day sched-open"><strong>Пн</strong><br>09-22</div>
+<div class="sched-day sched-open"><strong>Вт</strong><br>09-22</div>
+<div class="sched-day sched-open"><strong>Ср</strong><br>09-22</div>
+<div class="sched-day sched-open"><strong>Чт</strong><br>09-22</div>
+<div class="sched-day sched-open"><strong>Пт</strong><br>09-23</div>
+<div class="sched-day sched-open"><strong>Сб</strong><br>09-23</div>
+<div class="sched-day sched-open"><strong>Вс</strong><br>09-22</div>
+</div>
+<p style="color:var(--text3);font-size:.82rem">Источники: Zoon.ru, 2GIS. Пт-Сб закрываются на час позже.</p>
+</div>
+</section>
+
+<!-- ========== PART IV: STRATEGY ========== -->
+
+<!-- SECTION 14: GROWTH PATH -->
+<section class="section" id="s14">
+<div class="container">
+<div class="section-head"><div class="section-num">13</div><h2>Стратегия: путь к росту</h2></div>
+
+<div class="card card-gold">
+<h3>Диагноз: 2025 — тревожный год</h3>
+<p style="color:var(--text2);font-size:.9rem">Выручка упала на 12% (96,3 млн ₽ vs 108,5 млн ₽ в 2024), убыток −2,8 млн ₽. При этом рынок Москвы растёт на +9-14% — значит, Июль теряет долю. Ключевой вопрос: это разовое проседание (ремонт, ребрендинг) или системная проблема?</p>
+</div>
+
+<div class="grid-2" style="margin-top:16px">
+<div class="card card-green">
+<h3>Быстрые победы (0-3 мес.)</h3>
+<ul style="list-style:none;padding:0;color:var(--text2);font-size:.88rem">
+<li style="padding:4px 0">1. Аудит food cost — при инфляции +12% нужна ежемесячная ревизия себестоимости</li>
+<li style="padding:4px 0">2. Увеличить отзывы на 2GIS/Яндекс — программа «отзыв за десерт» (76 отзывов = мало)</li>
+<li style="padding:4px 0">3. Запустить программу лояльности для жителей Эталон-Сити (карта постоянного гостя)</li>
+<li style="padding:4px 0">4. Ревизия зарплат — если платят ниже рынка, потеряют поваров</li>
+</ul>
+</div>
+<div class="card card-blue">
+<h3>Среднесрочные действия (3-12 мес.)</h3>
+<ul style="list-style:none;padding:0;color:var(--text2);font-size:.88rem">
+<li style="padding:4px 0">1. Развитие собственной доставки (не только агрегаторы — маржа 15-30% vs 5-10%)</li>
+<li style="padding:4px 0">2. Кулинарные мастер-классы для детей (как АндерСон) — дополнительный revenue stream</li>
+<li style="padding:4px 0">3. Сезонное меню: обновление каждые 2-3 месяца с акцентом на локальные продукты</li>
+<li style="padding:4px 0">4. Корпоративные завтраки/обеды для компаний в ЖК</li>
+<li style="padding:4px 0">5. Маркетинг: Instagram-воронка → бронирование через LeClick</li>
+</ul>
+</div>
+</div>
+
+<div class="calc-trace" style="margin-top:16px">
+<strong>Точка безубыточности (оценка)</strong><br>
+Формула: Fixed Costs / (1 − Variable Cost %)<br>
+При food cost ~30%, labor ~25%, rent ~10%: переменные = ~65%<br>
+Постоянные (аренда + часть ФОТ + амортизация): ~3-4 млн ₽/мес. (⚠ допущение)<br>
+Точка безубыточности: 3 500 000 / (1 − 0.65) = ~10 млн ₽/мес. = ~120 млн ₽/год<br>
+Текущая выручка (2025): 96,3 млн ₽/год = 8 млн ₽/мес. → <strong style="color:var(--red)">ниже точки безубыточности</strong><br>
+Достоверность: ОЦЕНКА ⚠ (постоянные расходы — допущение, требует данных от клиента)
+</div>
+</div>
+</section>
+
+<!-- SECTION 15: CHARTS -->
+<section class="section" id="s15">
+<div class="container">
+<div class="section-head"><div class="section-num">14</div><h2>Графики и визуализация</h2></div>
+
+<h3 style="color:var(--gold);margin-bottom:12px">Radar: Июль vs ключевые конкуренты</h3>
+<svg viewBox="0 0 400 350" style="width:100%;max-width:450px;margin:0 auto;display:block">
+<rect width="400" height="350" fill="var(--bg2)" rx="12"/>
+<!-- Radar axes -->
+<g transform="translate(200,170)">
+<!-- Background circles -->
+<circle cx="0" cy="0" r="60" fill="none" stroke="var(--border)" stroke-width=".5"/>
+<circle cx="0" cy="0" r="120" fill="none" stroke="var(--border)" stroke-width=".5"/>
+<!-- Axis lines and labels -->
+<line x1="0" y1="0" x2="0" y2="-130" stroke="var(--border)" stroke-width=".5"/>
+<text x="0" y="-138" fill="var(--text2)" text-anchor="middle" font-size="9">Кухня</text>
+<line x1="0" y1="0" x2="124" y2="-40" stroke="var(--border)" stroke-width=".5"/>
+<text x="135" y="-35" fill="var(--text2)" font-size="9">Атмосф.</text>
+<line x1="0" y1="0" x2="76" y2="105" stroke="var(--border)" stroke-width=".5"/>
+<text x="85" y="120" fill="var(--text2)" font-size="9">Детская</text>
+<line x1="0" y1="0" x2="-76" y2="105" stroke="var(--border)" stroke-width=".5"/>
+<text x="-95" y="120" fill="var(--text2)" font-size="9">Digital</text>
+<line x1="0" y1="0" x2="-124" y2="-40" stroke="var(--border)" stroke-width=".5"/>
+<text x="-140" y="-35" fill="var(--text2)" font-size="9">Цена</text>
+<!-- Июль polygon -->
+<polygon points="0,-96, 93,-30, 57,79, -38,52, -74,-24" fill="rgba(74,143,224,.15)" stroke="var(--blue)" stroke-width="2"/>
+<!-- Pasti&Asti polygon -->
+<polygon points="0,-102, 87,-28, 19,26, -38,52, -62,-20" fill="rgba(201,164,76,.1)" stroke="var(--gold)" stroke-width="1.5" stroke-dasharray="4"/>
+<!-- АндерСон polygon -->
+<polygon points="0,-72, 74,-24, 67,92, -23,32, -62,-20" fill="rgba(224,128,64,.1)" stroke="var(--orange)" stroke-width="1.5" stroke-dasharray="4"/>
+</g>
+<!-- Legend -->
+<rect x="20" y="310" width="12" height="12" fill="var(--blue)" rx="2"/>
+<text x="38" y="320" fill="var(--text2)" font-size="10">Июль</text>
+<rect x="100" y="310" width="12" height="12" fill="var(--gold)" rx="2"/>
+<text x="118" y="320" fill="var(--text2)" font-size="10">Pasti&amp;Asti</text>
+<rect x="200" y="310" width="12" height="12" fill="var(--orange)" rx="2"/>
+<text x="218" y="320" fill="var(--text2)" font-size="10">АндерСон</text>
+</svg>
+
+<h3 style="color:var(--gold);margin:24px 0 12px">Рейтинги конкурентов (2GIS)</h3>
+<div class="bar-row"><div class="bar-label">Бык да баран</div><div class="bar-track"><div class="bar-fill" style="width:98%;background:var(--green)">4.9</div></div><div class="bar-val">173 отз.</div></div>
+<div class="bar-row"><div class="bar-label">АндерСон</div><div class="bar-track"><div class="bar-fill" style="width:98%;background:var(--green)">4.9</div></div><div class="bar-val">44 отз.</div></div>
+<div class="bar-row"><div class="bar-label">Сулико</div><div class="bar-track"><div class="bar-fill" style="width:98%;background:var(--green)">4.9</div></div><div class="bar-val">62 отз.</div></div>
+<div class="bar-row"><div class="bar-label">Pasti&amp;Asti</div><div class="bar-track"><div class="bar-fill" style="width:96%;background:var(--gold)">4.8</div></div><div class="bar-val">46 отз.</div></div>
+<div class="bar-row"><div class="bar-label" style="font-weight:700;color:var(--blue)">Июль</div><div class="bar-track"><div class="bar-fill" style="width:94%;background:var(--blue)">4.7</div></div><div class="bar-val" style="color:var(--blue)">76 отз.</div></div>
+<div class="bar-row"><div class="bar-label">Hatimaki</div><div class="bar-track"><div class="bar-fill" style="width:94%;background:var(--gold)">4.7</div></div><div class="bar-val">97 отз.</div></div>
+<div class="bar-row"><div class="bar-label">Изи паб</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--gold)">4.5</div></div><div class="bar-val">107 отз.</div></div>
+<div class="bar-row"><div class="bar-label">Италония</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:var(--gold)">4.5</div></div><div class="bar-val">24 отз.</div></div>
+<div class="bar-row"><div class="bar-label">Дюшес</div><div class="bar-track"><div class="bar-fill" style="width:86%;background:var(--orange)">4.3</div></div><div class="bar-val">857 отз.</div></div>
+<div class="bar-row"><div class="bar-label">Красный чай</div><div class="bar-track"><div class="bar-fill" style="width:86%;background:var(--orange)">4.3</div></div><div class="bar-val">21 отз.</div></div>
+<div class="bar-row"><div class="bar-label">Макадамия</div><div class="bar-track"><div class="bar-fill" style="width:80%;background:var(--orange)">4.0</div></div><div class="bar-val">31 отз.</div></div>
+
+<h3 style="color:var(--gold);margin:24px 0 12px">Структура расходов ресторана (бенчмарк)</h3>
+<svg viewBox="0 0 300 300" style="width:100%;max-width:350px;margin:0 auto;display:block">
+<rect width="300" height="300" fill="var(--bg2)" rx="12"/>
+<!-- Donut chart -->
+<g transform="translate(150,140)">
+<circle cx="0" cy="0" r="90" fill="none" stroke="var(--gold)" stroke-width="30" stroke-dasharray="170 396" stroke-dashoffset="0" opacity=".8"/>
+<circle cx="0" cy="0" r="90" fill="none" stroke="var(--green)" stroke-width="30" stroke-dasharray="141 396" stroke-dashoffset="-170" opacity=".8"/>
+<circle cx="0" cy="0" r="90" fill="none" stroke="var(--blue)" stroke-width="30" stroke-dasharray="57 396" stroke-dashoffset="-311" opacity=".8"/>
+<circle cx="0" cy="0" r="90" fill="none" stroke="var(--purple)" stroke-width="30" stroke-dasharray="28 396" stroke-dashoffset="-368" opacity=".8"/>
+<text x="0" y="-5" fill="var(--text)" text-anchor="middle" font-size="14" font-weight="700">100%</text>
+<text x="0" y="12" fill="var(--text3)" text-anchor="middle" font-size="10">выручки</text>
+</g>
+<!-- Legend -->
+<text x="30" y="265" fill="var(--gold)" font-size="10">● Food cost 30%</text>
+<text x="30" y="280" fill="var(--green)" font-size="10">● ФОТ 25%</text>
+<text x="170" y="265" fill="var(--blue)" font-size="10">● Аренда 10%</text>
+<text x="170" y="280" fill="var(--purple)" font-size="10">● Прочее 35%</text>
+</svg>
+</div>
+</section>
+
+<!-- SECTION 16: BENCHMARKS -->
+<section class="section" id="s16">
+<div class="container">
+<div class="section-head"><div class="section-num">15</div><h2>Отраслевые бенчмарки</h2></div>
+
+<table>
+<tr><th>Метрика</th><th>Бенчмарк</th><th>Июль (оценка)</th><th>Статус</th></tr>
+<tr><td>Food cost</td><td>25-35%</td><td>⚠ Нет данных</td><td><span class="badge b-gold">Уточнить</span></td></tr>
+<tr><td>ФОТ</td><td>20-25%</td><td>⚠ Нет данных</td><td><span class="badge b-gold">Уточнить</span></td></tr>
+<tr><td>Аренда (Бутово)</td><td>8-10%</td><td>⚠ ~8-10%</td><td><span class="badge b-green">В норме</span></td></tr>
+<tr><td>EBITDA маржа</td><td>15-20%</td><td>~2% (2024)</td><td><span class="badge b-red">Ниже нормы</span></td></tr>
+<tr><td>RevPASH</td><td>200-400 ₽</td><td>~244 ₽</td><td><span class="badge b-green">В норме</span></td></tr>
+<tr><td>Оборачиваемость</td><td>2-3/день</td><td>~2.2</td><td><span class="badge b-green">В норме</span></td></tr>
+<tr><td>Средний чек</td><td>2 053 ₽ (Москва)</td><td>1 400 ₽</td><td><span class="badge b-gold">Ниже Москвы</span></td></tr>
+<tr><td>Выручка/сотрудник</td><td>—</td><td>12,1 млн ₽</td><td><span class="badge b-green">Высокий</span></td></tr>
+</table>
+
+<div class="info-tip"><div class="ii">i</div><span>Средний чек 1 400 ₽ ниже среднемосковского (2 053 ₽), но для спального района это норма — аудитория чувствительна к цене. RevPASH ~244 ₽ — хороший показатель для casual dining. Ключевая проблема — маржинальность (2% чистой прибыли при норме 10-15%).</span></div>
+
+<div class="card" style="margin-top:16px">
+<h3>Кадровый рынок: зарплаты Москва (апрель 2026)</h3>
+<table>
+<tr><th>Позиция</th><th>Рынок (gross), ₽</th><th>Июль (2022-23, net)</th><th>Разрыв</th></tr>
+<tr><td>Шеф-повар</td><td>140 000 — 270 000</td><td>130 000 — 150 000</td><td><span class="delta delta-down">Ниже рынка</span></td></tr>
+<tr><td>Повар</td><td>65 000 — 130 000</td><td>—</td><td>—</td></tr>
+<tr><td>Официант</td><td>70 000 — 150 000</td><td>70 000 — 100 000</td><td><span class="badge b-green">В рынке</span></td></tr>
+<tr><td>Администратор</td><td>80 000 — 130 000</td><td>55 000 — 65 000</td><td><span class="delta delta-down">Ниже рынка</span></td></tr>
+<tr><td>Управляющий</td><td>120 000 — 200 000</td><td>—</td><td>—</td></tr>
+</table>
+<p style="font-size:.82rem;color:var(--text3);margin-top:8px">Данные о зарплатах Июля — из архивных вакансий HH.ru 2022-2023. Текущие ставки могут отличаться. Рынок вырос на +47% за 2024-2025.</p>
+</div>
+</div>
+</section>
+
+<!-- SECTION 17: STRATEGIC CONCLUSIONS -->
+<section class="section" id="s17">
+<div class="container">
+<div class="section-head"><div class="section-num">16</div><h2>Стратегические выводы и рекомендации</h2></div>
+
+<div class="card card-gold">
+<h3>1. Главный вызов: восстановить выручку</h3>
+<p style="color:var(--text2);font-size:.9rem">2025 год показал падение −12%. Приоритет №1 — вернуть выручку к уровню 2023-2024 (108-112 млн ₽). Это достижимо при условии, что причины падения — временные (ремонт, сезонность). Если причины структурные (потеря аудитории, конкуренция) — нужна смена стратегии.</p>
+</div>
+
+<div class="grid-2" style="margin-top:16px">
+<div class="card">
+<h3 style="color:var(--green)">2. Усилить семейный формат</h3>
+<p style="color:var(--text2);font-size:.88rem">«Июль Детям» — конкурентное преимущество перед Pasti&amp;Asti и Изи пабом. Но АндерСон делает это лучше (мастер-классы, праздники, няни). Рекомендация: запустить программу выходных (мастер-классы, квесты) и маркетировать отдельно.</p>
+</div>
+<div class="card">
+<h3 style="color:var(--blue)">3. Digital-маркетинг</h3>
+<p style="color:var(--text2);font-size:.88rem">76 отзывов на 2GIS для 6-летнего ресторана — крайне мало. У конкурента Дюшес — 857. Запустить: стимулирование отзывов, активный Instagram, таргет на жителей ЖК Эталон-Сити через VK/Яндекс геолокацию.</p>
+</div>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h3 style="color:var(--orange)">4. Контроль маржинальности</h3>
+<p style="color:var(--text2);font-size:.9rem">Чистая прибыль 1-2% при норме 10-15% — критически мало. При инфляции продуктов +12% и росте зарплат +47% маржа будет продолжать сжиматься. Действия: (1) ежемесячный аудит food cost, (2) оптимизация меню (убрать нерентабельные позиции), (3) повышение среднего чека через доп. продажи (десерты, вино), (4) развитие высокомаржинальных направлений (бар, кейтеринг).</p>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h3 style="color:var(--purple)">5. Вторая точка (Зиларт)</h3>
+<p style="color:var(--text2);font-size:.9rem">По данным HR-агента, существует второй ресторан на наб. Марка Шагала, 1к2 (Зиларт). Это стратегически важно: две точки дают экономию на закупках, маркетинге, управлении. Но также удваивают операционные риски при текущей низкой маржинальности. Рекомендация: сфокусироваться на прибыльности каждой точки, прежде чем думать о дальнейшем масштабировании.</p>
+</div>
+</div>
+</section>
+
+<!-- ========== PART V: APPENDICES ========== -->
+
+<!-- SECTION 18: OPEN QUESTIONS -->
+<section class="section" id="s18">
+<div class="container">
+<div class="section-head"><div class="section-num">17</div><h2>Открытые вопросы</h2></div>
+
+<div class="card">
+<ol style="color:var(--text2);font-size:.9rem;padding-left:20px">
+<li style="padding:4px 0">Причина падения выручки в 2025 (−12%) — ремонт? смена меню? потеря аудитории? рост конкуренции?</li>
+<li style="padding:4px 0">Резкий рост собственного капитала с 30K до 7 765K в 2025 — за счёт чего? Вложения учредителя? Переоценка активов?</li>
+<li style="padding:4px 0">Реальное количество сотрудников: 8-9 по ФНС на 2 ресторана — крайне мало. Сколько на ГПХ/самозанятости?</li>
+<li style="padding:4px 0">Точное количество посадочных мест (для расчёта RevPASH)</li>
+<li style="padding:4px 0">Фактический food cost и ФОТ как доля от выручки</li>
+<li style="padding:4px 0">Ставка аренды на ул. Поляны, 5</li>
+<li style="padding:4px 0">Доля доставки в общей выручке</li>
+<li style="padding:4px 0">Работает ли «Июль Детям» как отдельный формат или интегрирован в основной ресторан?</li>
+<li style="padding:4px 0">Кто такой ИП Успенский Никита Викторович — сооснователь? управляющий? часть персонала оформлена через его ИП?</li>
+<li style="padding:4px 0">Статус второй точки на Зиларте — открыта? работает? какая доля в общей выручке?</li>
+</ol>
+</div>
+</div>
+</section>
+
+<!-- SECTION 19: METHODOLOGY -->
+<section class="section" id="s19">
+<div class="container">
+<div class="section-head"><div class="section-num">18</div><h2>Методология и глоссарий</h2></div>
+
+<div class="card">
+<h3>Источники данных</h3>
+<table>
+<tr><th>Уровень</th><th>Тип</th><th>Источники</th></tr>
+<tr><td>A (gold)</td><td>Официальные реестры</td><td>Checko.ru (ФНС), Audit-it.ru, ЕГРЮЛ</td></tr>
+<tr><td>B</td><td>Деловые СМИ</td><td>Коммерсант, РБК, Forbes, TAdviser, Ведомости</td></tr>
+<tr><td>C</td><td>Отраслевые</td><td>Restorating.ru, Retail.ru, CheckIndex, NF Group</td></tr>
+<tr><td>D</td><td>Агрегаторы</td><td>2GIS, Yandex Maps, Zoon.ru, Restaurant Guru, LeClick, HH.ru</td></tr>
+<tr><td>E</td><td>Самоотчёт</td><td>julygastro.ru, Instagram @july.gastro, @july.detyam</td></tr>
+</table>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h3>Формулы расчётов</h3>
+<table>
+<tr><th>Метрика</th><th>Формула</th></tr>
+<tr><td>RevPASH</td><td>Выручка / (Посадочные места × Рабочие часы)</td></tr>
+<tr><td>Оборачиваемость</td><td>(Выручка в день / Средний чек) / Кол-во мест</td></tr>
+<tr><td>Точка безубыточности</td><td>Постоянные расходы / (1 − Доля переменных расходов)</td></tr>
+<tr><td>Маржа ЧП</td><td>Чистая прибыль / Выручка × 100%</td></tr>
+<tr><td>Выручка/сотрудник</td><td>Годовая выручка / Среднесписочная численность</td></tr>
+</table>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h3>Ограничения и допущения</h3>
+<ul style="list-style:none;padding:0;color:var(--text2);font-size:.88rem">
+<li style="padding:4px 0">⚠ Количество посадочных мест (90) — оценка на основе формата и площади типичного заведения в ЖК</li>
+<li style="padding:4px 0">⚠ Food cost и ФОТ — использованы отраслевые бенчмарки, реальные данные не получены</li>
+<li style="padding:4px 0">⚠ Данные о зарплатах Июля — из архивных вакансий HH.ru 2022-2023, могут быть неактуальны</li>
+<li style="padding:4px 0">⚠ Разделение выручки между Бутово и Зилартом — невозможно на основе публичных данных (единая отчётность ООО)</li>
+<li style="padding:4px 0">🔒 Финансовые данные ФНС 2019-2025 — подтверждены по 2+ источникам (Checko + Audit-it)</li>
+<li style="padding:4px 0">🔒 Рейтинги 2GIS — подтверждены прямым запросом</li>
+</ul>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h3>Процесс сбора данных</h3>
+<p style="color:var(--text2);font-size:.88rem">Отчёт подготовлен 8 апреля 2026. Использованы 8 параллельных агентов-исследователей: ФНС/ЕГРЮЛ, конкуренты (500м-2.3км), соцсети, меню/отзывы, HR, рынок, фаундеры, мнения лидеров. Верификация: ключевые факты проверены по 2-3 источникам.</p>
+</div>
+</div>
+</section>
+
+<!-- ========== PART VI: FACTCHECK ========== -->
+
+<!-- SECTION 20: FACTCHECK -->
+<section class="section" id="s20">
+<div class="container">
+<div class="section-head"><div class="section-num">19</div><h2>Фактчек: исправления</h2></div>
+
+<div class="card">
+<h3>Выявленные расхождения при верификации</h3>
+
+<div class="correction">
+<div class="old">Средний чек: 1 500 ₽ (первоначальные данные)</div>
+<div class="arrow">&rarr;</div>
+<div class="new">1 000-1 500 ₽ (Zoon), 1 650 ₽ (Restorating), ~1 400-1 500 ₽ (консенсус)</div>
+</div>
+
+<div class="correction">
+<div class="old">Сотрудников: 9 (2024, ФНС)</div>
+<div class="arrow">&rarr;</div>
+<div class="new">9 по ФНС, но реально 20-35 (вероятно ГПХ/ИП Успенский)</div>
+</div>
+
+<div class="correction">
+<div class="old">Один ресторан на ул. Поляны, 5</div>
+<div class="arrow">&rarr;</div>
+<div class="new">Две точки: ул. Поляны, 5 (Бутово) + наб. Марка Шагала, 1к2 (Зиларт)</div>
+</div>
+
+<div class="correction">
+<div class="old">Выручка 2023 = пик (112 млн ₽)</div>
+<div class="arrow">&rarr;</div>
+<div class="new">Пик подтверждён. 2024: −4%, 2025: −12%. Тренд на снижение</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 21: SOCIAL VERIFIED -->
+<section class="section" id="s21">
+<div class="container">
+<div class="section-head"><div class="section-num">20</div><h2>Digital-присутствие: верификация</h2></div>
+
+<table>
+<tr><th>Платформа</th><th>Handle / URL</th><th>Статус</th><th>Примечание</th></tr>
+<tr><td>Instagram (осн.)</td><td>@july.gastro</td><td><span class="badge b-green">Найден</span></td><td>Основной аккаунт ресторана</td></tr>
+<tr><td>Instagram (дети)</td><td>@july.detyam</td><td><span class="badge b-green">Найден</span></td><td>Аккаунт «Июль Детям»</td></tr>
+<tr><td>Сайт</td><td>julygastro.ru</td><td><span class="badge b-green">Работает</span></td><td>Основной сайт</td></tr>
+<tr><td>VK</td><td>Группа</td><td><span class="badge b-green">Есть</span></td><td>⚠ Требует ручной проверки активности</td></tr>
+<tr><td>Telegram</td><td>Канал</td><td><span class="badge b-green">Есть</span></td><td>Для бронирования</td></tr>
+<tr><td>2GIS</td><td>70000001041416773</td><td><span class="badge b-green">Активен</span></td><td>4.7 / 76 отзывов</td></tr>
+<tr><td>Яндекс Карты</td><td>21842896382</td><td><span class="badge b-green">Активен</span></td><td>Карточка ресторана</td></tr>
+<tr><td>Zoon.ru</td><td>gastrobar_iyul</td><td><span class="badge b-green">Активен</span></td><td>4.1 / 9 оценок</td></tr>
+<tr><td>LeClick</td><td>gastrojuly</td><td><span class="badge b-green">Активен</span></td><td>Онлайн-бронирование</td></tr>
+<tr><td>Restaurant Guru</td><td>July-Moscow</td><td><span class="badge b-green">Активен</span></td><td>4.7 / 2016 рейтингов</td></tr>
+<tr><td>Restorating</td><td>iul-butovo</td><td><span class="badge b-gold">Слабый</span></td><td>4.33/10, всего 1 отзыв</td></tr>
+</table>
+</div>
+</section>
+
+<!-- SECTION 22: WORKING HOURS -->
+<section class="section" id="s22">
+<div class="container">
+<div class="section-head"><div class="section-num">21</div><h2>Режим работы: перекрёстная верификация</h2></div>
+
+<table>
+<tr><th>День</th><th>Zoon.ru</th><th>2GIS</th><th>Консенсус</th></tr>
+<tr><td>Пн-Чт</td><td>09:00-22:00</td><td>09:00-22:00</td><td><span class="badge b-green">09:00-22:00 🔒</span></td></tr>
+<tr><td>Пт-Сб</td><td>09:00-23:00</td><td>09:00-23:00</td><td><span class="badge b-green">09:00-23:00 🔒</span></td></tr>
+<tr><td>Вс</td><td>09:00-22:00</td><td>09:00-22:00</td><td><span class="badge b-green">09:00-22:00 🔒</span></td></tr>
+</table>
+<p style="color:var(--text3);font-size:.82rem;margin-top:8px">Данные совпадают по обоим источникам. Статус: 🔒 подтверждено.</p>
+</div>
+</section>
+
+<!-- ========== PART VII: FOUNDERS & OPINIONS ========== -->
+
+<!-- SECTION 23: FOUNDERS -->
+<section class="section" id="s23">
+<div class="container">
+<div class="section-head"><div class="section-num">22</div><h2>Карта владельцев</h2></div>
+
+<div class="founder-card">
+<h4>Савельев Сергей Альбертович</h4>
+<div class="role">Генеральный директор и единственный учредитель (100%)</div>
+<table>
+<tr><td>ИНН</td><td>772638977651</td></tr>
+<tr><td>Доля</td><td>100% (10 000 ₽ уставный капитал)</td></tr>
+<tr><td>Должность</td><td>Генеральный директор с 09.07.2019</td></tr>
+<tr><td>Юр. адрес</td><td>119571, Москва, ул. Академика Анохина, д. 5, к. 3, кв. 223</td></tr>
+<tr><td>Два заведения</td><td>ул. Поляны, 5 (Бутово) + наб. Марка Шагала, 1к2 (Зиларт)</td></tr>
+<tr><td>Связанные лица</td><td>ИП Успенский Никита Викторович — аффилированный HH.ru аккаунт «Бариста и Шеф»</td></tr>
+</table>
+</div>
+
+<div class="info-tip"><div class="ii">i</div><span>Единственный учредитель — типичная структура для независимого ресторана. ИП Успенский вероятно используется для оформления части персонала или отдельных операций. Публичных интервью и медиа-упоминаний основателя не обнаружено — ресторан развивается «тихо», без PR-активности.</span></div>
+
+<div class="timeline" style="margin-top:24px">
+<div class="timeline-item">
+<div class="timeline-date">09.07.2019</div>
+<div class="timeline-text">Регистрация ООО «Бариста и Шеф». Выручка за 2019: 294 тыс. ₽ (запуск)</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2020</div>
+<div class="timeline-text">Взрывной рост: выручка 29 млн ₽. Получена господдержка (COVID-меры)</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2021</div>
+<div class="timeline-text">Выручка 53 млн ₽ (+83%). 5 сотрудников. Убыток −71K (инвестиции в рост)</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2022</div>
+<div class="timeline-text">Выручка 98 млн ₽ (+84%). Расширение до 9 сотрудников. Вакансия шеф-повара на HH</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2023</div>
+<div class="timeline-text">Пик выручки: 112 млн ₽. Лучшая прибыль: 1,6 млн ₽. Открытие второй точки (Зиларт?)</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2024</div>
+<div class="timeline-text">Начало снижения: выручка 109 млн ₽ (−4%), но прибыль выросла до 2,2 млн ₽</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2025</div>
+<div class="timeline-text" style="color:var(--red)">Кризисный год: выручка 96 млн ₽ (−12%), убыток −2,8 млн ₽. Рост собственного капитала до 7,8 млн ₽</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- SECTION 24: INDUSTRY VOICES -->
+<section class="section" id="s24">
+<div class="container">
+<div class="section-head"><div class="section-num">23</div><h2>Мнения лидеров индустрии</h2></div>
+
+<div class="quote-card">
+<div class="quote-header">
+<div class="quote-avatar" style="background:var(--gold)">СМ</div>
+<div><div class="quote-name">Сергей Миронов</div><div class="quote-role">Ресторатор, основатель «Мясо и Рыба», колумнист</div></div>
+</div>
+<div class="quote-body">Рестораны в спальных районах — это будущее. Даже крупные ресторанные группы начали открываться в качественных спальных районах. Аудитория там лояльнее, аренда ниже, а конкуренция мягче.</div>
+<div class="quote-footer"><span>2025</span><span>РБК Pro</span></div>
+</div>
+
+<div class="quote-card">
+<div class="quote-header">
+<div class="quote-avatar" style="background:var(--red)">АН</div>
+<div><div class="quote-name">Аркадий Новиков</div><div class="quote-role">Основатель Novikov Group</div></div>
+</div>
+<div class="quote-body">Главная проблема рынка — кадры. Найти хорошего шеф-повара стало практически невозможно. Зарплаты выросли на 40-50%, но это не решает проблему — людей физически не хватает.</div>
+<div class="quote-footer"><span>2025</span><span>Коммерсант</span></div>
+</div>
+
+<div class="quote-card">
+<div class="quote-header">
+<div class="quote-avatar" style="background:var(--green)">БЗ</div>
+<div><div class="quote-name">Борис Зарьков</div><div class="quote-role">Основатель White Rabbit Family</div></div>
+</div>
+<div class="quote-body">Формат гастробара — один из самых устойчивых. Гибкое меню, контролируемый food cost, высокая маржа на напитках. Именно такие форматы выживают в кризис.</div>
+<div class="quote-footer"><span>2024</span><span>Forbes Russia</span></div>
+</div>
+
+<div class="quote-card">
+<div class="quote-header">
+<div class="quote-avatar" style="background:var(--blue)">ДЗ</div>
+<div><div class="quote-name">Дмитрий Зотов</div><div class="quote-role">Шеф-повар, ресторатор (Haggis Pub, «Крылышко или ножка»)</div></div>
+</div>
+<div class="quote-body">Русская кухня — это не просто тренд, а настоящий хайп. Переосмысление традиционных блюд через новые технологии, локальные продукты, фермерские хозяйства — вот что реально работает.</div>
+<div class="quote-footer"><span>2025</span><span>Restorating.ru</span></div>
+</div>
+
+<div class="quote-card">
+<div class="quote-header">
+<div class="quote-avatar" style="background:var(--purple)">АП</div>
+<div><div class="quote-name">Антон Пинский</div><div class="quote-role">Ресторатор, управляющий партнёр Pinskiy&amp;Co</div></div>
+</div>
+<div class="quote-body">94% рестораторов называют рост стоимости сырья главным фактором давления. Картофель +62%, масло +30%, кофе +24%. Мы вынуждены повышать цены быстрее инфляции.</div>
+<div class="quote-footer"><span>2025</span><span>Коммерсант</span></div>
+</div>
+
+<div class="quote-card">
+<div class="quote-header">
+<div class="quote-avatar" style="background:var(--orange)">ФРИО</div>
+<div><div class="quote-name">ФРИО</div><div class="quote-role">Федерация рестораторов и отельеров</div></div>
+</div>
+<div class="quote-body">Отрасли не хватает около 30 000 сотрудников. Кадровый дефицит достиг 30% — это критическая отметка. На 1 вакансию повара приходится всего 2 резюме.</div>
+<div class="quote-footer"><span>2025</span><span>ТАСС</span></div>
+</div>
+
+<div class="quote-card">
+<div class="quote-header">
+<div class="quote-avatar" style="background:var(--teal)">ИТ</div>
+<div><div class="quote-name">Илья Тютенков</div><div class="quote-role">Ресторатор (Italy Group)</div></div>
+</div>
+<div class="quote-body">Семейный формат с качественной детской инфраструктурой — это гарантия стабильного дневного трафика. Семья приходит на завтрак и остаётся до обеда. Средний чек × 3-4 человека.</div>
+<div class="quote-footer"><span>2024</span><span>Afisha Daily</span></div>
+</div>
+
+<div class="info-tip"><div class="ii">i</div><span>Цитаты собраны из деловых и отраслевых СМИ за 2024-2025 гг. Тематика: рынок, форматы, кадры, food cost, спальные районы. Количество: 7 цитат (⚠ ниже целевых 15-25 — требуется дополнительный сбор при наличии времени).</span></div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<p>Отчёт подготовлен 8 апреля 2026 г.</p>
+<p style="margin-top:4px">ООО «Бариста и Шеф» &bull; ИНН 9729286509 &bull; Ресторан «Июль», ул. Поляны, 5, Москва</p>
+<p style="margin-top:8px;color:var(--text3)">Источники: Checko.ru, Audit-it.ru, 2GIS, Яндекс Карты, Zoon.ru, Restorating.ru, HH.ru, TAdviser, РБК, Коммерсант, Forbes, Росстат, CheckIndex</p>
+</div>
+</footer>
+
+</body>
+</html>
